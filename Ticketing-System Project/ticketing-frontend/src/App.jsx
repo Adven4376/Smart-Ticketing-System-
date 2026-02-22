@@ -444,10 +444,18 @@ color: darkMode ? "#eee" : "#111",
               key={seatNum}
               onClick={() => isBooked ? handleCancel(seatNum) : toggleSeat(seatNum)}
               style={{
-                aspectRatio: '1', borderRadius: '6px', border: darkMode ? '1px solid #333' : '1px solid #ddd', fontWeight: 'bold', cursor: 'pointer',minHeight: window.innerWidth < 420 ? '40px' : '32px',
+                aspectRatio: '1',
+                borderRadius: '6px',
+                border: darkMode ? '1px solid #333' : '1px solid #ddd',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                minHeight: window.innerWidth < 420 ? '40px' : '32px',
                 fontSize: window.innerWidth < 420 ? '0.9rem' : '0.8rem',
+
+                backgroundColor: isBooked ? '#374151' : isSelected ? '#4caf50' : '#fff',
+
                 color: isBooked || isSelected ? '#fff' : '#111',
-                color: isBooked || isSelected ? '#fff' : (darkMode ? '#eee' : '#333'),
+
                 transition: '0.2s'
               }}
             >
