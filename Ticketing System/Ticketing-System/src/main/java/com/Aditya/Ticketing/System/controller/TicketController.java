@@ -12,12 +12,13 @@ import java.util.List;
 @RequestMapping("/api/tickets") // The base URL for all ticket actions
 public class TicketController {
 
-    TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
 
     private final TicketService ticketService;
 
     //Constructor Injection
-    public TicketController (TicketService ticketService){
+    public TicketController (TicketRepository ticketRepository, TicketService ticketService){
+        this.ticketRepository = ticketRepository;
         this.ticketService = ticketService;
     }
 
