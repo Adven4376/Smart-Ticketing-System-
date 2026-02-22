@@ -77,10 +77,11 @@ const App = () => {
     const res = await axios.post(url); // No second 'null' argument needed here
     setMessage(res.data);
     fetchSeats(); 
-  }catch (err) {
-  // Use 'err.response.data' to see the real message from Spring Boot
-  const errorMsg = err.response?.data || "Connection failed";
-  setMessage("Status: " + errorMsg);
+  } catch (err) {
+  // Extract the real message from the server response
+  const errorMessage = err.response?.data || err.message || "An unexpected error occurred";
+  setMessage(errorMessage); 
+  console.error("Full Error Details:", err); // Check F12 console for details
 }
 };
 
