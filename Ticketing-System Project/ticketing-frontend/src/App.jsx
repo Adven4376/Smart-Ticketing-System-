@@ -198,7 +198,7 @@ const App = () => {
     <div style={{
       background: darkMode ? "#111" : "white",
       color: darkMode ? "#eee" : "#111",
-      padding: '40px',
+      padding: window.innerWidth < 420 ? '16px' : '40px',
       borderRadius: '24px',
       boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
       width: '100%',
@@ -269,7 +269,7 @@ const App = () => {
 }}>
   <h1 style={{
     margin: 0,
-    fontSize: "1.9rem",
+    fontSize: window.innerWidth < 420 ? "1.4rem" : "1.9rem",
     fontWeight: "700",
     color: darkMode ? "#f1f5f9" : "#111827"
   }}>
@@ -290,14 +290,14 @@ const App = () => {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-          gap: '12px'
+          gap: window.innerWidth < 420 ? '8px' : '12px'
         }}>
           {movies.map(m => (
             <div
               key={m.id}
               onClick={() => setEventId(m.id)}
               style={{
-                padding: '12px',
+                padding: window.innerWidth < 420 ? '10px' : '12px',
                 borderRadius: '12px',
                 cursor: 'pointer',
                 border: m.id === eventId ? '2px solid #d32f2f' : '1px solid #ddd',
@@ -421,7 +421,19 @@ color: darkMode ? "#eee" : "#111",
   <span>⬛ Booked</span>
 </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '10px', padding: '20px', background: darkMode ? "#1a1a1a" : "#f9f9f9", borderRadius: '15px', marginBottom: '25px' }}>
+      <div style={{
+  display: 'grid',
+  gridTemplateColumns: window.innerWidth < 420
+    ? 'repeat(6, 1fr)'
+    : window.innerWidth < 768
+    ? 'repeat(8, 1fr)'
+    : 'repeat(10, 1fr)',
+  gap: window.innerWidth < 420 ? '6px' : '10px',
+  padding: window.innerWidth < 420 ? '12px' : '20px',
+  background: darkMode ? "#1a1a1a" : "#f9f9f9",
+  borderRadius: '15px',
+  marginBottom: '25px'
+}}>
         {[...Array(60).keys()].map(i => {
           const seatNum = i + 1;
           const isBooked = bookedSeats.includes(seatNum);
@@ -432,8 +444,9 @@ color: darkMode ? "#eee" : "#111",
               key={seatNum}
               onClick={() => isBooked ? handleCancel(seatNum) : toggleSeat(seatNum)}
               style={{
-                aspectRatio: '1', borderRadius: '6px', border: darkMode ? '1px solid #333' : '1px solid #ddd', fontWeight: 'bold', cursor: 'pointer',
-                backgroundColor: isBooked ? '#374151' : isSelected ? '#4caf50' : '#fff',
+                aspectRatio: '1', borderRadius: '6px', border: darkMode ? '1px solid #333' : '1px solid #ddd', fontWeight: 'bold', cursor: 'pointer',minHeight: window.innerWidth < 420 ? '40px' : '32px',
+                fontSize: window.innerWidth < 420 ? '0.9rem' : '0.8rem',
+                color: isBooked || isSelected ? '#fff' : '#111',
                 color: isBooked || isSelected ? '#fff' : (darkMode ? '#eee' : '#333'),
                 transition: '0.2s'
               }}
