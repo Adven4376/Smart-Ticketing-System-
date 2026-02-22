@@ -78,11 +78,8 @@ const App = () => {
     setMessage(res.data);
     fetchSeats(); 
   } catch (err) {
-  // Extract the real message from the server response
-  const errorMessage = err.response?.data || err.message || "An unexpected error occurred";
-  setMessage(errorMessage); 
-  console.error("Full Error Details:", err); // Check F12 console for details
-}
+    setMessage("Error: " + (err.response?.data || "Connection failed"));
+  }
 };
 
   const handleCancel = async (seatNum) => {
