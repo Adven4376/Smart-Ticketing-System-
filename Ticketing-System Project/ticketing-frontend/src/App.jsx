@@ -83,18 +83,18 @@ const App = () => {
   };
 
   const handleCancel = async (seatNum) => {
-    if (window.confirm(`Cancel booking for Seat ${seatNum}?`)) {
-      try {
-        const res = await axios.delete(`${API_BASE}/cancel`, {
-          params: { eventId, seatNumber: seatNum }
-        });
-        setMessage(typeof res.data === 'string' ? res.data : "Cancelled!");
-        fetchSeats();
-      } catch (err) {
-        setMessage("Cancellation failed.");
-      }
+  if (window.confirm(`Cancel booking for Seat ${seatNum}?`)) {
+    try {
+      const res = await axios.delete(`${API_BASE}/cancel`, {
+        params: { eventId, seatNumber: seatNum, userId }
+      });
+      setMessage(typeof res.data === 'string' ? res.data : "Cancelled!");
+      fetchSeats();
+    } catch (err) {
+      setMessage("Cancellation failed.");
     }
-  };
+  }
+};
 
   return (
     <div style={{

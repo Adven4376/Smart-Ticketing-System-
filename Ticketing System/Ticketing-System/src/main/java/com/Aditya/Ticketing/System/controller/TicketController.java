@@ -67,7 +67,11 @@ public class TicketController {
     }
 
     @DeleteMapping("/cancel")
-    public String cancelTicket(@RequestParam Long eventId, @RequestParam Integer seatNumber) {
-        return ticketService.cancelTicket(eventId, seatNumber);
+    public String cancelTicket(
+            @RequestParam Long eventId,
+            @RequestParam Integer seatNumber,
+            @RequestParam Long userId
+    ) {
+        return ticketService.cancelTicket(eventId, seatNumber, userId);
     }
 }

@@ -75,13 +75,22 @@ public class TicketService {
         return results.toString();
     }
 
-    public String cancelTicket(Long eventId, Integer seatNumber) {
-        Optional<Ticket> ticket = ticketRepository.findByEventIdAndSeatNumber(eventId, seatNumber);
-        if (ticket.isPresent()) {
-            ticketRepository.delete(ticket.get());
-            return "Success: Seat " + seatNumber + " has been cancelled.";
+    public String cancelTicket(Long eventId, Integer seatNumber, Long userId) {
+        Optional<Ticket> ticketOpt = ticketRepository.findByEventIdAndSeatNumber(eventId, seatNumber);
+
+        if (ticketOpt.isEmpty()) {
+            return "Error: Ticket not found.";
         }
-        return "Error: Ticket not found.";
+
+        Ticket ticket = ticketOpt.get();
+
+        // 🔒 SECURITY CHECK: Only owner can cancel
+        if (!ticket.getUserId().equals(userId)) {
+            return "Error: You are not allowed to cancel someone else's ticket!";
+        }
+
+        ticketRepository.delete(ticket);
+        return "Success: Seat " + seatNumber + " has been cancelled by User " + userId + ".";
     }
 
 
