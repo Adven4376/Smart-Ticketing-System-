@@ -77,9 +77,11 @@ const App = () => {
     const res = await axios.post(url); // No second 'null' argument needed here
     setMessage(res.data);
     fetchSeats(); 
-  } catch (err) {
-    setMessage("Error: " + (err.response?.data || "Connection failed"));
-  }
+  }catch (err) {
+  // Use 'err.response.data' to see the real message from Spring Boot
+  const errorMsg = err.response?.data || "Connection failed";
+  setMessage("Status: " + errorMsg);
+}
 };
 
   const handleCancel = async (seatNum) => {
