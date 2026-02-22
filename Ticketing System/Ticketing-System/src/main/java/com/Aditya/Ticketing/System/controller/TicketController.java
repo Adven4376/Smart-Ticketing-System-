@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
+@CrossOrigin(
+        origins = {"http://localhost:5173", "https://your-frontend-link.vercel.app"},
+        allowedHeaders = "*",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE}
+)
 @RestController
 @RequestMapping("/api/tickets") // The base URL for all ticket actions
 public class TicketController {

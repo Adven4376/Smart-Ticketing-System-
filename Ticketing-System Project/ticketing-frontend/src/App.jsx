@@ -9,7 +9,7 @@ const App = () => {
   const [userId, setUserId] = useState(101); // INTERACTIVE USER ID
   const [message, setMessage] = useState('');
 
-  const API_BASE = "http://localhost:7777/api/tickets"; 
+  const API_BASE = "https://smart-ticketing-system-5.onrender.com"; 
 
   
 
