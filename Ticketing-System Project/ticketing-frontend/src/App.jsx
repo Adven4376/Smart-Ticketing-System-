@@ -311,7 +311,20 @@ color: darkMode ? "#eee" : "#111",
                 fontSize: '0.9rem'
               }}
             >
-       <div style={{ fontWeight: "bold", marginBottom: "6px" }}>{m.name}</div>
+       <div style={{ marginBottom: "6px" }}>
+  <span style={{
+    fontSize: "0.7rem",
+    padding: "3px 8px",
+    borderRadius: "999px",
+    background: "#e5e7eb",
+    color: "#374151",
+    marginRight: "6px",
+    fontWeight: "600"
+  }}>
+    ID {String(m.id).padStart(2, "0")}
+  </span>
+  <span style={{ fontWeight: "bold" }}>{m.name}</span>
+</div>
 <span style={{
   fontSize: "0.75rem",
   padding: "4px 8px",
