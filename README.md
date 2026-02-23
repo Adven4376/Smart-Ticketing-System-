@@ -48,15 +48,7 @@ A full-stack, cloud-deployed ticket booking platform that allows users to select
 
 ## 🏗️ Architecture Overview
 
-React (Vercel)
-|
-| REST API (Axios)
-v
-Spring Boot Backend (Render)
-|
-| JPA / Hibernate
-v
-MySQL Database (Railway)
+React (Vercel) -> REST API (Axios) -> Spring Boot Backend (Render) -> JPA / Hibernate -> MySQL Database (Railway)
 
 - Frontend handles UI, seat selection, login simulation, and user actions.
 - Backend exposes REST APIs for booking, cancellation, and fetching seats.
