@@ -96,7 +96,7 @@ cd Ticketing System/Ticketing-System
 # Configure application.properties with your MySQL details
 mvn spring-boot:run
 
-Frontend (React)
+### Frontend (React)
 
 cd Ticketing-System Project/ticketing-frontend
 npm install
