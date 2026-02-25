@@ -2,6 +2,7 @@ package com.Aditya.Ticketing.System.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -23,4 +24,11 @@ public class Ticket {
 
     @Version
     private Integer version; // THE MAGIC: This is your 2026 Optimistic Lock!
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "user_name")
+    private String userName;
+
 }

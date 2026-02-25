@@ -47,9 +47,10 @@ public class TicketController {
     public String bookTicket(
             @RequestParam Long eventId,
             @RequestParam Long userId,
+            @RequestParam(required = false) String userName,  // ✅ NEW (optional)
             @RequestParam Integer seatNumber) {
 
-        return ticketService.bookTicket(eventId, userId, seatNumber);
+        return ticketService.bookTicket(eventId, userId, userName, seatNumber);
     }
 
     // http://localhost:7777/status
@@ -62,8 +63,9 @@ public class TicketController {
     public String bookMultiple(
             @RequestParam Long eventId,
             @RequestParam Long userId,
+            @RequestParam(required = false) String userName,  // ✅ NEW (optional)
             @RequestParam List<Integer> seatNumbers) {
-        return ticketService.bookMultipleTickets(eventId, userId, seatNumbers);
+        return ticketService.bookMultipleTickets(eventId, userId, userName, seatNumbers);
     }
 
     @DeleteMapping("/cancel")

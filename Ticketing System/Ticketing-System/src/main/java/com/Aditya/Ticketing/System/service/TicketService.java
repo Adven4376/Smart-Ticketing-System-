@@ -27,7 +27,7 @@ public class TicketService {
      * 3. Database Constraints (Integrity)
      */
     @Transactional
-    public String bookTicket(Long eventId, Long userId, Integer seatNumber) {
+    public String bookTicket(Long eventId, Long userId, String userName, Integer seatNumber) {
         try {
             // 1. First Check: See if the seat is already in the database
             Optional<Ticket> existingTicket = ticketRepository.findByEventIdAndSeatNumber(eventId, seatNumber);
@@ -39,8 +39,10 @@ public class TicketService {
             Ticket newTicket = new Ticket();
             newTicket.setEventId(eventId);
             newTicket.setUserId(userId);
+            newTicket.setUserName(userName); //  ✅ new username
             newTicket.setSeatNumber(seatNumber);
             newTicket.setStatus("BOOKED");
+            newTicket.setCreatedAt(java.time.LocalDateTime.now()); // ✅ AUTO TIMESTAMP
 
             // 3. Save and Flush immediately to trigger any Database/JPA conflicts NOW
             ticketRepository.saveAndFlush(newTicket);
@@ -61,12 +63,12 @@ public class TicketService {
         }
     }
 
-    public String bookMultipleTickets(Long eventId, Long userId, List<Integer> seatNumbers) {
+    public String bookMultipleTickets(Long eventId, Long userId, String userName, List<Integer> seatNumbers) {
         StringBuilder results = new StringBuilder();
         for (Integer seat : seatNumbers) {
             try {
                 // Re-use your existing individual booking logic for each seat
-                String res = bookTicket(eventId, userId, seat);
+                String res = bookTicket(eventId, userId, userName, seat);
                 results.append(seat).append(": ").append(res).append("\n");
             } catch (Exception e) {
                 results.append(seat).append(": Failed (").append(e.getMessage()).append(")\n");

@@ -19,10 +19,11 @@ public class ConcurrencyTest {
     void testConcurrentBooking() {
         // We trigger two bookings for the SAME seat simultaneously
         CompletableFuture<String> user1 = CompletableFuture.supplyAsync(() ->
-                ticketService.bookTicket(1L, 101L, 50));
+                ticketService.bookTicket(1L, 101L, "User101", 50));
+
 
         CompletableFuture<String> user2 = CompletableFuture.supplyAsync(() ->
-                ticketService.bookTicket(1L, 102L, 50));
+                ticketService.bookTicket(1L, 102L, "User102", 50));
 
         // Wait for both to finish
         String res1 = user1.join();

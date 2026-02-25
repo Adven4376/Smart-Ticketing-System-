@@ -14,6 +14,8 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginUserId, setLoginUserId] = useState("");
+  const [loginUserName, setLoginUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [myBookings, setMyBookings] = useState([]);
 
   // FIXED: Added the correct /api/tickets path to match your Java Controller [1.1]
@@ -98,7 +100,7 @@ const App = () => {
 
   setLoading(true);
 
-  const url = `${API_BASE}/book-multiple?eventId=${eventId}&userId=${userId}&seatNumbers=${selectedSeats.join(',')}`;
+  const url = `${API_BASE}/book-multiple?eventId=${eventId}&userId=${userId}&userName=${encodeURIComponent(userName)}&seatNumbers=${selectedSeats.join(',')}`;
 
   try {
     const res = await axios.post(url);
@@ -169,10 +171,26 @@ const App = () => {
             fontSize: "1rem"
           }}
         />
+        <input
+          type="text"
+          placeholder="Enter your Name"
+          value={loginUserName}
+          onChange={(e) => setLoginUserName(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "12px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            marginBottom: "16px",
+            textAlign: "center",
+            fontSize: "1rem"
+          }}
+        />
         <button
           onClick={() => {
-            if (!loginUserId) return alert("Enter User ID");
+            if (!loginUserId || !loginUserName) return alert("Enter User ID and Name");
             setUserId(Number(loginUserId));
+            setUserName(loginUserName);
             setIsLoggedIn(true);
             fetchSeats();
             fetchMyBookings(Number(loginUserId));
@@ -356,7 +374,7 @@ color: darkMode ? "#eee" : "#111",
   background: darkMode ? "#1f1f1f" : "#f3f4f6"
 }}>
   <span style={{ fontWeight: "bold" }}>
-    👤 Logged in as User {userId}
+    👤 Logged in as {userName} (User {userId})
   </span>
   <button
     onClick={() => {
