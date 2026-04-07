@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://localhost:7777/api/tickets/book";
+const API_URL = "https://smart-ticketing-system-v2.onrender.com/api/tickets/book";
 
 const TicketService = {
     book: async (seat) => {

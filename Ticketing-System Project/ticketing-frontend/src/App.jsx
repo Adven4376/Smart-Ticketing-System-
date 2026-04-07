@@ -19,7 +19,7 @@ const App = () => {
   const [myBookings, setMyBookings] = useState([]);
 
   // FIXED: Added the correct /api/tickets path to match your Java Controller [1.1]
-  const API_BASE = "https://smart-ticketing-system-5.onrender.com/api/tickets"; 
+  const API_BASE = "https://smart-ticketing-system-v2.onrender.com/api/tickets"; 
 
   const movies = [
   { id: 1,  name: "Jailer 2 (Tamil Movie) – 2026", type: "Movie" },

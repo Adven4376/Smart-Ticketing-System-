@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:7777/api',
+  baseURL: 'https://smart-ticketing-system-v2.onrender.com/api',
   timeout: 5000,
 });
 
